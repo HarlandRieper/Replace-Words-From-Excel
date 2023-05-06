@@ -1,4 +1,4 @@
-# ReplaceWordsFromExcel
+# ReplaceWordsFromExcel word文档的批量“查找和替换”
 在word文档中，需要将“苹果”替换为“菠萝”、“香蕉”替换为“榴莲”、“葡萄”替换为“橙子”......手动输入也太累了，试试宏呢？
 
 # 如何导入宏？
