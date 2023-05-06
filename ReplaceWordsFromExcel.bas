@@ -1,3 +1,4 @@
+
 Sub ReplaceWordsFromExcel()
     ' 定义要替换的多组词
     Dim oldWords As Variant
@@ -12,6 +13,8 @@ Sub ReplaceWordsFromExcel()
         Exit Sub
     End If
     
+    FlagValue = MsgBox("确认是正向替换？如需反向替换，选择“否”", vbYesNo + vbDefaultButton1 + vbSystemModal, "提示")
+
     srcFilePath = Replace(srcFilePath, "/", "\")
     srcFilePath = Replace(srcFilePath, Chr(34), "")
     
@@ -22,11 +25,16 @@ Sub ReplaceWordsFromExcel()
     Set xlsApp = CreateObject("Excel.Application")
     Set xlsWorkbook = xlsApp.Workbooks.Open(srcFilePath)
     
-
-    
     Set xlsSheet = xlsWorkbook.Sheets(1)
-    oldWords = xlsSheet.Range("A1:A" & xlsSheet.Cells(xlsSheet.Rows.Count, "A").End(-4162).Row).Value
-    newWords = xlsSheet.Range("B1:B" & xlsSheet.Cells(xlsSheet.Rows.Count, "B").End(-4162).Row).Value
+    
+    If FlagValue = vbYes Then
+        oldWords = xlsSheet.Range("A1:A" & xlsSheet.Cells(xlsSheet.Rows.Count, "A").End(-4162).Row).Value
+        newWords = xlsSheet.Range("B1:B" & xlsSheet.Cells(xlsSheet.Rows.Count, "B").End(-4162).Row).Value
+    Else
+        newWords = xlsSheet.Range("A1:A" & xlsSheet.Cells(xlsSheet.Rows.Count, "A").End(-4162).Row).Value
+        oldWords = xlsSheet.Range("B1:B" & xlsSheet.Cells(xlsSheet.Rows.Count, "B").End(-4162).Row).Value
+    End If
+    
     xlsWorkbook.Close False
     Set xlsSheet = Nothing
     Set xlsWorkbook = Nothing
