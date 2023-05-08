@@ -79,7 +79,7 @@ Sub ReplaceWordsInText(text As Range, oldWords As Variant, newWords As Variant)
             ' 在文本中查找并替换所有匹配项
             With text.Find
                 .ClearFormatting
-                .MatchWholeWord = True
+                .MatchWholeWord = Flase
                 .text = oldWords(i, 1)
                 .Replacement.text = newWords(i, 1)
                 .Execute Replace:=wdReplaceAll
